@@ -1,2 +1,1 @@
-
-![Preview](https://github.com/CiddeChan/llm/blob/main/preview.jpg)
+![图片预览](https://github.com/CiddeChan/llm/blob/main/preview.jpg)
