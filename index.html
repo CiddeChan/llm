@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>欢迎使用</title>
+    <meta name="name" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <!-- /github-markdown-css/5.1.0/github-markdown.min.css" -->
+    <link rel="stylesheet" href="./github-markdown.min.css" />
+    <!-- /highlight.js/11.11.1/styles/a11y-light.min.css" -->
+    <link rel="stylesheet" href="./a11y-light.min.css" />
+    <!-- katex-0.16.21 -->
+    <link rel="stylesheet" href="./katex.min.css" />
+
+    <style>
+      p,
+      h1,
+      ul,
+      li {
+        padding: 0;
+        margin: 0;
+      }
+      label {
+        display: inline-flex;
+        align-items: center;
+      }
+      input {
+        margin: 3px;
+      }
+      .hljs {
+        overflow: auto;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* border: 1px solid #00f; */
+        box-shadow: 2px 2px 4px #a8a8a8;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+
+      .row-wrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .bar-wrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        min-height: 40px;
+      }
+
+      .bar-wrapper input[type="file"] {
+        max-width: 70px;
+      }
+      .bar-wrapper > label:first-child {
+        margin: 0 10px 0 20px;
+      }
+
+      .bar-wrapper .radiobox-group {
+        display: flex;
+        list-style: none;
+        padding: 0;
+      }
+      .bar-wrapper .radiobox-group input,
+      .bar-wrapper .radiobox-group label {
+        cursor: pointer;
+        font-weight: normal;
+      }
+
+      .bar-wrapper select {
+        padding: 2px;
+      }
+
+      .bar-wrapper .image-preview {
+        display: flex;
+        align-items: center;
+      }
+      .bar-wrapper .image-preview img {
+        margin: 4px;
+        width: auto;
+        max-height: 32px;
+        border-radius: 2px;
+      }
+
+      .bar-wrapper .clear-image {
+        color: #c00505;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .bar-wrapper .clear-image:hover {
+        color: #ff0000;
+      }
+
+      .clear-dialog {
+        margin: 10px 10px 10px auto;
+        color: #ccc;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .clear-dialog:hover {
+        color: #007bff;
+      }
+
+      .prompt-wrapper {
+        width: 100%;
+        border-radius: 4px;
+        border: 2px solid #007bff;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .prompt-wrapper textarea {
+        width: 100%;
+        height: 32px;
+        resize: none;
+        overflow: auto;
+        border: none;
+        outline: none;
+        padding: 0;
+        font-size: 16px;
+      }
+
+      .prompt-wrapper .tips-wrapper {
+        display: flex;
+        align-items: flex-end;
+        font-size: 12px;
+      }
+      .prompt-wrapper .tips {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        word-break: break-all;
+        overflow: hidden;
+      }
+      .prompt-wrapper .text-tips {
+        color: #999;
+      }
+      .prompt-wrapper .prompt-tips {
+        color: #333;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .prompt-wrapper .submit-button {
+        margin-left: 10px;
+        padding: 0 32px;
+        height: 36px;
+        line-height: 36px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      .prompt-wrapper .submit-button:hover {
+        background-color: #0056b3;
+      }
+      .prompt-wrapper .submit-button[disabled] {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+      .prompt-wrapper .submit-button[disabled]:hover {
+        background-color: #ccc;
+      }
+
+      .content-wrapper {
+        overflow: auto;
+        flex: 1;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 2px solid #f8f8f8;
+        background-color: #fefefe;
+      }
+      .content-wrapper .answer-area {
+        margin: 0 10px;
+      }
+
+      .question-area {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .question-image-area {
+        margin: 10px 10px 10px auto;
+        text-align: right;
+      }
+      .question-image {
+        width: 160px;
+        height: auto;
+        border-radius: 2px;
+        border: 4px solid #007bff;
+        box-sizing: border-box;
+        padding: 2px;
+        background-color: #fff;
+      }
+      .question-image-ocr {
+        margin: 4px;
+        color: #ccc;
+        white-space: pre-wrap;
+      }
+
+      .question-cnt {
+        color: #fff;
+        background-color: #007bff;
+        padding: 10px;
+        border-radius: 4px;
+        margin: 0 10px 10px auto;
+        box-sizing: border-box;
+        max-width: 68vw;
+        white-space: pre-wrap;
+      }
+
+      .tips-label {
+        padding: 4px;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #000;
+      }
+      .stop-label {
+        color: #007bff;
+        cursor: pointer;
+      }
+      .expand-label {
+        margin-left: 10px;
+        color: #999;
+        cursor: pointer;
+      }
+      .expand-label:hover {
+        color: #000;
+      }
+
+      .think-area {
+        padding: 10px;
+        margin: 0 0 10px 0;
+        border-radius: 4px;
+        color: #333;
+        background-color: #f8f8f8;
+      }
+      .think-cnt {
+        margin-top: 8px;
+        padding: 0 10px;
+        white-space: pre-wrap;
+        max-height: 8rem;
+        overflow: auto;
+      }
+
+      .result-area {
+        padding: 10px;
+        margin: 0 0 10px 0;
+        border-radius: 4px;
+        color: #333;
+        background-color: rgba(0, 0, 255, 0.05);
+      }
+      .result-cnt {
+        margin-top: 8px;
+        padding: 0 10px;
+      }
+
+      .original-area {
+        padding: 10px;
+        margin: 0 0 10px 0;
+        border-radius: 4px;
+        color: #999;
+        background-color: #f8f8f8;
+      }
+
+      .original-cnt {
+        margin-top: 8px;
+        padding: 0 10px;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p style="font-size: 18px; font-weight: bold; padding-bottom: 10px">
+        欢迎使用
+      </p>
+
+      <div id="content" class="content-wrapper"></div>
+      <form id="form">
+        <div class="row-wrapper">
+          <div class="bar-wrapper">
+            <label for="model">模型</label>
+            <select id="model" name="model" required>
+              <option value="">请选择模型</option>
+            </select>
+          </div>
+
+          <div class="bar-wrapper">
+            <label for="imageInput">图片</label>
+            <input type="file" id="imageInput" accept="image/*" />
+
+            <input id="imageBase64" name="image" type="hidden" />
+
+            <div class="image-preview" id="imagePreview"></div>
+          </div>
+
+          <div class="bar-wrapper">
+            <label for="temperature">温度</label>
+            <ul class="radiobox-group">
+              <li>
+                <label>
+                  <input
+                    id="temperature"
+                    type="radio"
+                    name="temperature"
+                    value="0"
+                    checked
+                    required
+                  />
+                  0
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="temperature" value="0.5" /> .5
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="temperature" value="1" /> 1
+                </label>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bar-wrapper">
+            <label for="context">上下文</label>
+            <input id="context" name="context" type="checkbox" value="true" />
+          </div>
+
+          <div class="bar-wrapper">
+            <label for="chat">对话</label>
+            <input id="chat" name="chat" type="checkbox" value="true" />
+          </div>
+
+          <div class="bar-wrapper">
+            <label for="network">联网</label>
+            <input id="network" name="network" type="checkbox" value="true" />
+          </div>
+
+          <div class="clear-dialog" onclick="clearDialog()">清除所有对话</div>
+        </div>
+        <div class="prompt-wrapper">
+          <textarea
+            id="prompt"
+            name="prompt"
+            placeholder="输入你的问题？"
+            rows="1"
+            required
+          ></textarea>
+          <div class="tips-wrapper">
+            <div class="tips">
+              <span class="text-tips">Ctrl/Command + Enter 发送</span>
+              <span class="prompt-tips" id="submitStatus"></span>
+            </div>
+
+            <button class="submit-button" id="submitButton" type="submit">
+              发送
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- /highlight.js/11.11.1/highlight.min.js -->
+    <script src="./highlight.min.js"></script>
+    <!-- /markdown-it/13.0.2/markdown-it.min.js -->
+    <script src="./markdown-it.min.js"></script>
+    <!-- katex-0.16.21 -->
+    <script src="./katex.min.js"></script>
+
+    <script>
+      const API_URL = "https://llmapi.xxx.com/v1/";
+
+      // 公共参数
+      const HOST_NAME = "www.xxx.com";
+      let Auth = "";
+
+      let dialogID = 0;
+      let thinking = false;
+      let codeCnt = []; // 用于复制代码内容
+      let answerCnt = ""; // 接收数据块原文
+      let requestController = null;
+      let responseReader = null;
+      let networkRes = []; //储存网络结果,{title:xxx;href:xxx}
+
+      // 生成UUID
+      function generateUUID() {
+        if (typeof crypto !== "undefined" && crypto.randomUUID) {
+          return crypto.randomUUID(); // 原生 API，性能最佳 ‌:ml-citation{ref="1,2" data="citationList"}
+        } else {
+          // 兼容旧环境的备选方案（见下方手动实现）
+          return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+            (
+              c ^
+              (crypto.getRandomValues(new Uint8Array(1)) & (15 >> (c / 4)))
+            ).toString(16)
+          );
+        }
+      }
+
+      // 发送状态
+      const submitStatus = document.getElementById("submitStatus");
+      // 提交按钮
+      const submitButton = document.getElementById("submitButton");
+
+      // 释放发送按钮
+      const resetSubmitButton = function () {
+        submitButton.disabled = false;
+        submitStatus.textContent = "";
+      };
+
+      // 停止接收内容
+      const stopAnswer = function (qid, aid) {
+        // 提问置灰
+        if (document.getElementById(qid + "-cnt")) {
+          document.getElementById(qid + "-cnt").style.backgroundColor = "#eee";
+        }
+        if (document.getElementById(qid + "-image")) {
+          document.getElementById(qid + "-image").style.borderColor = "#eee";
+          document.getElementById(qid + "-image").style.filter =
+            "grayscale(80%)";
+        }
+
+        // 发送停止会话/对话请求
+        if (document.getElementById(aid + "-sessionID")) {
+          let sessionID = document.getElementById(aid + "-sessionID").value;
+
+          console.log("停止会话ID：", sessionID);
+          fetch(`${API_URL}/stop`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Uuid: generateUUID(),
+              Authorization: Auth,
+              Hostname: HOST_NAME,
+            },
+            body: JSON.stringify({
+              session_id: sessionID,
+            }),
+          })
+            .then((response) => {
+              console.log("停止会话响应：", response);
+              if (!response.ok) {
+                console.error("停止会话失败！", response);
+              } else {
+                submitStatus.textContent = "停止会话成功！";
+              }
+            })
+            .catch((error) => {
+              console.error("停止会话出错：" + error);
+            });
+        }
+
+        // 终止读取
+        if (responseReader) {
+          responseReader.cancel();
+          responseReader = null;
+        }
+
+        // 终止接收
+        if (requestController) {
+          if (requestController.signal && !requestController.signal.aborted) {
+            requestController.abort("主动终止接收"); // 处理数据块中会抛出异常
+          }
+          requestController = null;
+        }
+
+        // 释放发送按钮
+        resetSubmitButton();
+      };
+
+      // 获取模型列表
+      window.onload = function () {
+        fetch(`${API_URL}/tags`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Uuid: generateUUID(),
+            Authorization: Auth,
+            Hostname: HOST_NAME,
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("获取模型失败" + response.statusText);
+            } else {
+              return response.json();
+            }
+          })
+          .then((data) => {
+            let modelSelect = document.getElementById("model");
+            let arr = data.models || [];
+            arr.reverse();
+            arr.forEach((model) => {
+              let option = document.createElement("option");
+              option.value = model.model;
+              option.text = model.name;
+              modelSelect.appendChild(option);
+            });
+            document.forms["form"].model.value = arr[0]?.model || "";
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+      // 发送防抖
+      function debounce(func, wait, immediate = true) {
+        let timeout;
+        return function (...args) {
+          const context = this;
+          clearTimeout(timeout);
+
+          if (immediate) {
+            let callNow = !timeout;
+            timeout = setTimeout(() => {
+              timeout = null;
+            }, wait);
+            if (callNow) {
+              func.apply(context, args);
+            }
+          } else {
+            timeout = setTimeout(() => {
+              func.apply(context, args);
+            }, wait);
+          }
+        };
+      }
+
+      const beforeSendMessage = debounce(sendMessage, 1000, true);
+
+      function htmlDecode(text) {
+        var temp = document.createElement("div");
+        temp.innerHTML = text;
+        var output = temp.innerText || temp.textContent;
+        temp = null;
+        return output;
+      }
+
+      function mathExpression(expr) {
+        // \[ xxx \]块级公式，\( xxx \)行内公式
+        return expr
+          .replace(/\\\[([\s\S]*?)\\\]/gm, (match, cnt) => {
+            return katex.renderToString(cnt, { displayMode: true });
+          })
+          .replace(/\\\((((?!\\\().)*)\\\)/gm, (match, cnt) => {
+            cnt = htmlDecode(cnt);
+            return katex.renderToString(cnt, { displayMode: false });
+          });
+      }
+
+      // markdown解析器配置
+      const md = new window.markdownit({
+        html: true,
+        linkify: true,
+        breaks: true,
+        xhtmlOut: true,
+        typographer: true,
+        highlight: function (str, lang) {
+          if (lang) {
+            try {
+              codeCnt.push(str);
+              // 废弃用法 hljs.highlight(lang, str, true).value  https://github.com/highlightjs/highlight.js/issues/2277
+              return (
+                '<pre class="hljs"><code>' +
+                hljs.highlight(str, { language: lang, ignoreIllegals: true })
+                  .value +
+                "</code>" +
+                `<p style="margin-top:10px;">${lang}<button style="margin-left:10px;" onclick="copyCode(codeCnt[codeCnt.length-1])">复制</button>${
+                  lang.toLowerCase() == "html"
+                    ? `<button style="margin-left:10px;" onclick="previewCode(codeCnt[codeCnt.length-1])">预览</button>`
+                    : ""
+                }</p>` +
+                "</pre>"
+              );
+            } catch (err) {}
+          } else {
+            return (
+              '<pre class="hljs"><code>' +
+              md.utils.escapeHtml(str) +
+              "</code></pre>"
+            );
+          }
+        },
+      });
+
+      // 发送消息
+      async function sendMessage(e) {
+        // console.log(e.get("name"));
+
+        if (!e.get("prompt") || e.get("prompt").trim() === "") {
+          alert("请输入一点东西");
+          // 释放发送按钮
+          resetSubmitButton();
+          return;
+        }
+
+        dialogID++;
+        const questionID = "question-" + dialogID;
+        const answerID = "answer-" + dialogID;
+        // 新会话允许自动下拉
+        cntScroll.setIsAutoScroll(true);
+
+        submitButton.disabled = true;
+        submitStatus.textContent = "处理中，请稍等...";
+        submitStatus.innerHTML += `<span class="stop-label" onclick="stopAnswer('${questionID}','${answerID}')">停止</span>`;
+
+        // 增加一个问答区域
+        document.getElementById("content").innerHTML += `
+        <div class="question-area">
+          <div class="question-image-area" id="${questionID}-image-area">
+          </div>
+          <div class="question-cnt" id="${questionID}-cnt">
+          </div>
+        </div>
+        <div class="answer-area" id="${answerID}" >
+          <div class="think-area" id="${answerID}-think-area" style="display:none">
+            <p><span class="tips-label">思考内容</span></p>
+            <div class="think-cnt" id="${answerID}-think-cnt">\n</div>
+          </div>
+          <div class="result-area" id="${answerID}-result-area" style="display:none">
+            <p><span class="tips-label">结果内容</span>（${e.get("model")}）</p>
+            <div class="result-cnt" id="${answerID}-result-cnt">\n</div>
+          </div>
+        </div>`;
+
+        // #1-发送区域
+        document.getElementById(questionID + "-cnt").textContent =
+          e.get("prompt");
+
+        const requestData = {
+          model: e.get("model"),
+          prompt: e.get("prompt"),
+          stream: true,
+          keep_alive: 0,
+          options: {
+            raw: false,
+            temperature: 0,
+          },
+        };
+
+        // 联网查询 todo,仅查询,!!e.get("network")
+        networkRes = [];
+        if (!!e.get("network")) {
+          requestData.network = true;
+          let kw = requestData.prompt;
+
+          function washHtml(str) {
+            return str.replace(/<[^>]+>/g, "").trim();
+          }
+
+          let headers = {
+            "Content-Type": "application/json",
+            Uuid: generateUUID(),
+          };
+
+          try {
+            let result = [];
+
+            // 第三方数据接口
+            let res = await fetch("https://api.xxx.com/v1/query1", {
+              headers,
+              method: "POST",
+              body: JSON.stringify({ keyword: kw }),
+            });
+            // res = await res.json();
+
+            res = {
+              data: {
+                title: "链接标题1",
+                code: "123456",
+                content: "<p>这是示例内容1。</p>",
+              },
+            }; // 测试数据
+            console.log("网络请求结果:", res);
+            if (res.data) {
+              let data = res.data;
+
+              let cnt = `${washHtml(data.content)}`;
+              result.push(cnt);
+              networkRes.push({
+                title: data.title,
+                href: "https://www.xxx.com/detail/" + data.code,
+              });
+            } else {
+              let kws = kw.match(/.{1,2}/g) || [];
+              for (let i = 0; i < kws.length; i++) {
+                let res = await fetch("https://api.xxx.com/v1/query2", {
+                  headers,
+                  method: "POST",
+                  body: JSON.stringify({ keyword: kws[i] }),
+                });
+                // res = await res.json();
+
+                res = {
+                  data: {
+                    title: "链接标题2",
+                    code: "666666",
+                    content: "<p>这是示例内容2。</p>",
+                  },
+                }; // 测试数据
+                if (res.data) {
+                  let data = res.data;
+
+                  let cnt = `${washHtml(data.content)}`;
+                  result.push(cnt);
+                  networkRes.push({
+                    title: data.title,
+                    href: "https://www.xxx.com/detail/" + data.code,
+                  });
+                  break;
+                }
+              }
+            }
+
+            console.log("网络查询结果:", result);
+
+            if (result.length) {
+              requestData.prompt = `${result.join(";")}\n整合以上搜索结果`;
+            }
+          } catch (error) {
+            console.error("网络搜索出错：" + error);
+          }
+        }
+
+        // 图片参数
+        if (!!e.get("image")) {
+          document.getElementById(
+            questionID + "-image-area"
+          ).innerHTML = `<img class="question-image" id="${
+            questionID + "-image"
+          }" src="${e.get("image")}" alt="Image Prompt">`;
+
+          // tocheck
+          requestData.images = [e.get("image").split(",")[1]];
+        }
+
+        // 温度
+        if (!!e.get("temperature")) {
+          requestData.options.temperature = Number(e.get("temperature"));
+        }
+
+        // 对话模式 tocheck
+        let isChat = !!e.get("chat");
+        if (isChat) {
+          requestData.messages = [
+            {
+              role: "user",
+              content: JSON.parse(JSON.stringify(requestData.prompt)),
+            },
+          ];
+          delete requestData.prompt;
+
+          if (requestData.images) {
+            requestData.messages[0].images = requestData.images;
+          }
+        }
+
+        // 上下文
+        if (!!e.get("context")) {
+          requestData.keep_alive = "5m";
+
+          let ctx = [];
+          for (let i = 1; i < dialogID; i++) {
+            // [问题,答案]
+            // if (
+            //   document.getElementById("answer-" + i + "-original-cnt")
+            //     ?.textContent.length
+            // ) {
+            //   let q = document
+            //     .getElementById("question-" + i + "-cnt")
+            //     .textContent.replace(/[\n\r]/g, "");
+            //   let imgs = document.getElementsByClassName(
+            //     "question-" + (i + 1) + "-image"
+            //   );
+            //   let a = document
+            //     .getElementById("answer-" + i + "-original-cnt")
+            //     .textContent.replace(/[\n\r]/g, "");
+            //   ctx = [...ctx, [q, a]];
+            // }
+
+            // [上下文序列]
+            let c = (
+              document.getElementById("answer-" + i + "-context")?.value || ""
+            ).split(",");
+            // ctx = [...ctx, ...c]; // 全部对话
+            ctx = [...c]; // 仅上一个对话
+          }
+
+          // console.log("上下文对话:", ctx);
+
+          // [问题,答案]
+          // if (ctx.length) {
+          //   requestData.context = ctx;
+          // }
+
+          // [上下文序列]
+          ctx = ctx.filter((e) => !!e).map((e) => parseInt(e));
+          if (ctx.length) {
+            // ctx = Array.from(new Set(ctx));
+            requestData.context = ctx;
+          }
+        }
+
+        cntScroll.scrollToBottom();
+        requestController = new AbortController();
+
+        fetch(`${API_URL}/${isChat ? "chat" : "generate"}`, {
+          signal: requestController.signal,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "text/event-stream",
+            Uuid: generateUUID(),
+            Authorization: Auth,
+            Hostname: HOST_NAME,
+          },
+          body: JSON.stringify(requestData),
+        })
+          .then(async (response) => {
+            if (!response.ok) {
+              // throw new Error("发送失败！");
+              let data = await response.json();
+              console.error("发送失败！", data);
+              window.alert(
+                `发送失败！\n${
+                  data.message || "未知错误"
+                }\n为防止影响正常业务，请稍后再试！\nTips:空闲内存≥1024MB时可使用`
+              );
+              throw new Error("发送失败！");
+              return null;
+            } else {
+              submitStatus.textContent = "发送成功！";
+              submitStatus.innerHTML += `<span class="stop-label" onclick="stopAnswer('${questionID}','${answerID}')">停止接收</span>`;
+            }
+
+            // 获取响应头中的sessionID加入到html结果中
+            const sessionID = response.headers.get("x-session-id") || "";
+            console.log("新增会话ID：", sessionID);
+            if (sessionID.length) {
+              document.getElementById(
+                answerID
+              ).innerHTML += `<input type="hidden" id="${answerID}-sessionID" value="${sessionID}">`;
+            }
+
+            responseReader = response.body.getReader();
+            return responseReader;
+          })
+          .then(async (reader) => {
+            if (!reader) {
+              return;
+            }
+
+            const decoder = new TextDecoder("utf-8");
+            const aid = "answer-" + dialogID;
+            let readCount = 0;
+
+            const read = async () => {
+              try {
+                // console.log("接收信号:", requestController.signal);
+                if (!requestController || !!requestController.signal.aborted) {
+                  console.error("接收中断！");
+                  throw new Error("接收中断！");
+                }
+
+                const { value, done } = await reader.read();
+
+                if (done) {
+                  console.log("接收完毕");
+
+                  // 原文内容
+                  document.getElementById(
+                    aid
+                  ).innerHTML += `<div class="original-area" id="${aid}-original-area" ><p><span class="tips-label">结果原文</span><span class="expand-label" id="${aid}-original-button" onclick="expandOriginal('${aid}')">展开</span></p><div class="original-cnt" id="${aid}-original-cnt" style="display:none">\n</div></div>`;
+
+                  // #4-结果原文区域
+                  document.getElementById(
+                    aid + "-original-cnt"
+                  ).textContent = `${answerCnt.trim("\n")}`;
+
+                  // #5-添加参考链接
+                  if (networkRes.length) {
+                    let cnt = networkRes.map((e) => {
+                      return `<a style="margin:4px 8px 4px 4px" title="${e.title}" target="_blank" href="${e.href}">${e.title}</a>`;
+                    });
+
+                    document.getElementById(
+                      aid
+                    ).innerHTML += `<p>参考连接：${cnt}</p>`;
+                  }
+
+                  // 滚到底部
+                  cntScroll.scrollToBottom();
+
+                  // 释放发送按钮
+                  resetSubmitButton();
+                  return;
+                }
+
+                const chunk = decoder.decode(value, { stream: true });
+
+                if (readCount == 0) {
+                  // 将全局answerCnt清空
+                  answerCnt = "";
+
+                  // 如果第一块内容不是<think>,就打开结果内容区域
+                  let firstChunk = parseJsonFromString(chunk, isChat);
+                  if (
+                    firstChunk.length &&
+                    firstChunk[0]?.response != "<think>"
+                  ) {
+                    document.getElementById(
+                      aid + "-result-area"
+                    ).style.display = "block";
+                  }
+
+                  // else if (firstChunk.length == 0) { //第一块内容离奇地无内容,将下一块内容作为第一块内容
+                  //   await read();
+                  //   return;
+                  // }
+                }
+
+                readCount++;
+                await processChunk(chunk, aid, isChat);
+                // 滚到底部
+                cntScroll.scrollToBottom();
+                thinkScroll && thinkScroll.scrollToBottom();
+                await read();
+              } catch (error) {
+                console.error("读取异常！", error);
+                throw new Error("读取异常！");
+              }
+            };
+            await read();
+          })
+          .catch((error) => {
+            console.error("异常捕获：" + error);
+            if (error != "主动终止接收") {
+              stopAnswer(questionID, answerID);
+            }
+          })
+          .finally(() => {});
+      }
+
+      // 滚动控制器
+      const scrollController = function (cid) {
+        let isAutoScroll = true;
+
+        const cnt = document.getElementById(cid);
+        let ost = 0;
+
+        const scrollToBottom = function (force = false) {
+          if (isAutoScroll || force) {
+            cnt.scrollTop = cnt.scrollHeight - cnt.clientHeight;
+          }
+        };
+
+        const setIsAutoScroll = function (x) {
+          isAutoScroll = !!x;
+        };
+
+        //监听滚动
+        const _scrollEvent = function () {
+          isAutoScroll = false; // 只要滚动就暂停
+
+          if (cnt.scrollTop === 0) {
+            // console.log(cid + "已滚动到顶部");
+          } else if (cnt.scrollTop + cnt.clientHeight >= cnt.scrollHeight) {
+            // console.log(cid + "已滚动到底部");
+            isAutoScroll = true;
+          } else if (cnt.scrollTop < ost) {
+            // isAutoScroll = false;
+          }
+          ost = cnt.scrollTop;
+        };
+        const scrollEvent = debounce(_scrollEvent, 10, false);
+        cnt.addEventListener("scroll", scrollEvent);
+        // console.log(cid + "监听滚动");
+
+        return {
+          scrollToBottom,
+          setIsAutoScroll,
+        };
+      };
+      const cntScroll = scrollController("content");
+      let thinkScroll = null;
+
+      // 反序列化
+      function parseJsonFromString(str, isChat = false) {
+        let result = [];
+
+        try {
+          const obj = JSON.parse(
+            str.replace(/\\n/g, "\\n").replace(/\\r/g, "\\r")
+          );
+          if (isChat) {
+            obj.response = obj.message.content || "";
+          }
+          result.push(obj);
+        } catch (error) {
+          console.warn("解析单个json字符串失败", str);
+          const reg = new RegExp(/\{[\s\S]*?\}(?=\s*\{|$)/gm);
+          const jsonStrings = str.match(reg);
+
+          if (jsonStrings) {
+            for (const jsonStr of jsonStrings) {
+              try {
+                const obj = JSON.parse(
+                  jsonStr.replace(/\\n/g, "\\n").replace(/\\r/g, "\\r")
+                );
+                if (isChat) {
+                  obj.response = obj.message.content || "";
+                }
+                result.push(obj);
+              } catch (e) {
+                console.error("解析一个json字符串失败:", jsonStr);
+              }
+            }
+          } else {
+            console.log("解析多个json字符串失败:", str);
+          }
+        }
+
+        return result;
+      }
+
+      // 特定标签转义
+      function escapeLabel(unsafe, aid) {
+        const thinkArea = document.getElementById(aid + "-think-area");
+        const thinkCnt = document.getElementById(aid + "-think-cnt");
+        const resultArea = document.getElementById(aid + "-result-area");
+
+        // <think>标签
+        if (new RegExp(/^<think>$/g).test(unsafe) && !thinking) {
+          thinking = true;
+          answerCnt = "";
+
+          thinkScroll = scrollController(aid + "-think-cnt");
+
+          if (thinkArea) {
+            thinkArea.style.display = "block";
+          }
+          return "";
+        }
+
+        // </think>标签
+        if (new RegExp(/^<\/think>$/g).test(unsafe) && thinking) {
+          thinking = false;
+          answerCnt = "";
+
+          thinkScroll = null;
+
+          if (thinkArea) {
+            if (thinkCnt.textContent.replace(/[\n\r]/g, "").trim() == "") {
+              thinkArea.style.display = "none";
+            }
+          }
+          if (resultArea) {
+            resultArea.style.display = "block";
+          }
+          return "";
+        }
+
+        return unsafe;
+      }
+
+      // 缓慢输出
+      const showCnt = debounce(
+        function (ele, answerCnt) {
+          ele.innerHTML = md.render(mathExpression(answerCnt));
+          cntScroll.scrollToBottom();
+        },
+        10,
+        false
+      );
+
+      // 数据块处理
+      async function processChunk(chunk, aid, isChat = false) {
+        try {
+          // 1.反序列化一或多段json字符串
+          let jsonarr = parseJsonFromString(chunk, isChat);
+
+          for (let i = 0; i < jsonarr.length; i++) {
+            let data = jsonarr[i];
+
+            let dr = "";
+            try {
+              dr = decodeURIComponent(data.response);
+            } catch (error) {
+              dr = data.response;
+            }
+
+            // 2.将特定标签转义
+            let child = escapeLabel(dr, aid);
+
+            // 3.全局原文拼接
+            answerCnt += child;
+
+            let ele = document.getElementById(aid + "-think-cnt");
+            if (!thinking) {
+              ele = document.getElementById(aid + "-result-cnt");
+            }
+            // ele.innerText += child; // 原文直出
+            // ele.innerText = answerCnt;
+
+            if (!thinking) {
+              //#3-结果区域
+
+              // <xxx>...</xxx>标签提取改造,\1就是前面括号(xxx)内容
+              // let reg = /<(xxx)(\s+.*?)?>([\s\S]*?)<\/\1>/gm;
+              // str.replace(reg, (match, tag, attrs, content) => {
+              //       return match;
+              // })
+
+              //showCnt(ele, answerCnt);
+              // 直接渲染
+              ele.innerHTML = md.render(mathExpression(answerCnt));
+              cntScroll.scrollToBottom();
+
+              // 无数学公式渲染
+              // ele.innerHTML = md.render(answerCnt);
+
+              let ctx = data.context || false;
+              if (ctx && Array.isArray(ctx)) {
+                // 最后一块的前一块数据
+                // console.log(ctx);
+                let ctxstr = ctx.join(",");
+                document.getElementById(
+                  aid
+                ).innerHTML += `<input id="${aid}-context" value="${ctxstr}" hidden />`;
+              }
+            } else {
+              //#2-思考区域
+              ele.textContent = answerCnt;
+            }
+          }
+        } catch (e) {
+          console.error("ERROR:", e);
+        }
+      }
+
+      // 代码复制
+      const copyCode = (text) => {
+        try {
+          navigator.clipboard
+            .writeText(text)
+            .then(function () {
+              console.log("已复制！");
+            })
+            .catch(function (err) {
+              throw new Error("浏览器不支持navigator.clipboard");
+            });
+        } catch (error) {
+          console.log(error);
+
+          const textarea = document.createElement("textarea");
+          textarea.id = "copyta";
+          textarea.style.width = "0px";
+          textarea.style.height = "0px";
+          textarea.style.opacity = "0";
+          textarea.value = text;
+
+          // 将 textarea 添加到 DOM 中
+          document.body.appendChild(textarea);
+
+          // 选中 textarea 的内容
+          textarea.select();
+          textarea.setSelectionRange(0, 999999); // 对于移动设备
+
+          // 执行复制命令
+          document.execCommand("copy");
+
+          // 从 DOM 中移除 textarea 元素
+          let child = document.getElementById("copyta");
+          document.body.removeChild(child);
+          console.log("已复制！");
+        }
+      };
+
+      // 代码预览
+      const previewCode = (code) => {
+        // 创建浮层容器
+        const overlay = document.createElement("div");
+        overlay.id = "overlay";
+        overlay.style = `position:fixed; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.5); z-index:9999; display:flex;
+        justify-content:center; align-items:center;`;
+
+        // 创建内容框
+        const modal = document.createElement("div");
+        modal.style = `background:white; padding:20px; border-radius:8px;
+        max-width:90vw;width:80vw; max-height:90vh; overflow:auto; position:relative;`;
+
+        // 添加关闭按钮
+        const closeBtn = document.createElement("button");
+        closeBtn.innerHTML = "×";
+        closeBtn.style = `position:absolute; top:0px; right:0px;
+        background:red; color:white; border:none; border-radius:0  0  0 50%   ;
+        width:30px; height:30px; cursor:pointer; font-size:20px;
+        line-height:0; padding:0;`;
+        closeBtn.onclick = () => overlay.remove();
+
+        // 组合元素
+        modal.innerHTML = `<div style="padding:15px;">${code}</div>`;
+        modal.prepend(closeBtn);
+        overlay.appendChild(modal);
+
+        // 点击外部关闭
+        overlay.onclick = (e) => e.target === overlay && overlay.remove();
+
+        document.body.appendChild(overlay);
+      };
+
+      //展开原文
+      const expandOriginal = (aid) => {
+        const originalElement = document.getElementById(aid + "-original-cnt");
+        const originalButton = document.getElementById(
+          aid + "-original-button"
+        );
+        if (originalElement.style.display == "none") {
+          originalElement.style.display = "block";
+          originalButton.textContent = "收起";
+        } else {
+          originalElement.style.display = "none";
+          originalButton.textContent = "展开";
+        }
+      };
+
+      // 清理图片
+      function clearImage() {
+        document.getElementById("imagePreview").innerHTML = "";
+        document.getElementById("imageBase64").value = "";
+        document.getElementById("imageInput").value = "";
+      }
+
+      // 清理对话
+      function clearDialog() {
+        stopAnswer("question-" + dialogID, "answer-" + dialogID);
+        document.getElementById("content").innerHTML = "";
+      }
+
+      // 监听图片文件变化
+      document
+        .getElementById("imageInput")
+        .addEventListener("change", function (event) {
+          const file = event.target.files ? event.target.files[0] : null;
+          // console.log("Selected file:", file);
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const base64String = e.target.result;
+              document.getElementById("imagePreview").innerHTML = `
+              <img src="${base64String}" alt="Image Preview">
+              <span class="clear-image" onclick="clearImage()">删除</span>`;
+
+              document.getElementById("imageBase64").value = base64String;
+            };
+            reader.readAsDataURL(file);
+          } else {
+            clearImage();
+          }
+        });
+
+      // 监听表单提交事件
+      document
+        .getElementById("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // 阻止表单默认提交行为
+          const formData = new FormData(event.target); // 创建FormData对象
+          beforeSendMessage(formData);
+        });
+
+      // 自动调整文本框高度
+      const textareaManage = (function autoResizeTextarea() {
+        const textarea = document.getElementById("prompt");
+        const resize = function () {
+          const minheight = 32;
+          const computedStyle = window.getComputedStyle(textarea);
+          const padding =
+            parseFloat(computedStyle.getPropertyValue("padding-top")) +
+            parseFloat(computedStyle.getPropertyValue("padding-bottom"));
+          textarea.style.height = minheight + "px";
+          textarea.style.maxHeight = "96px";
+          if (textarea.value.trim() != "") {
+            textarea.style.height = textarea.scrollHeight + "px";
+          }
+          if (
+            parseFloat(textarea.style.height.replace(/px/g, "")) < minheight
+          ) {
+            textarea.style.height = minheight + "px";
+          }
+        };
+        textarea.addEventListener("input", function () {
+          resize();
+        });
+        textarea.addEventListener("change", function () {
+          resize();
+        });
+        textarea.addEventListener("keydown", function (event) {
+          if (
+            (event.key === "Enter" || event.keyCode === 13) &&
+            (event.ctrlKey || event.metaKey)
+          ) {
+            event.preventDefault();
+            document.getElementById("submitButton").click();
+          }
+        });
+        return {
+          resize,
+        };
+      })();
+      textareaManage.resize();
+    </script>
+  </body>
+</html>
